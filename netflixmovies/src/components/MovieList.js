@@ -5,7 +5,7 @@ function MovieList(props){
         <>
         {props.fetchData.map((item)=>{
             return(
-                <Movie title={item.title} overview={item.overview} image={item.poster_path} id={item.id}/>
+                <Movie title={item.title} overview={item.overview} poster_path={item.poster_path} release_date={item.release_date} id={item.id}/>
             )
 
         })}

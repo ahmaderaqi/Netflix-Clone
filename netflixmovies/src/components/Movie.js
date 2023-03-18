@@ -12,6 +12,8 @@ function Movie(props){
     }, [])
     const [showFlag,setShowFlag] = useState(false);
     const [clickedItem,setClickedItem]=useState({});
+    const[imagee,setImagee]=useState("");
+    // setImagee(`https:/${props.poster_path}`)
 
     const handleShow = (item) =>{
         console.log(item);
@@ -28,7 +30,7 @@ function Movie(props){
                 
                      <Col>
                         <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={props.poster_path} />
+                            <Card.Img variant="top" src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80" />
                             <Card.Body>
                                 <Card.Title>{props.title}</Card.Title>
                                 <Card.Text>
