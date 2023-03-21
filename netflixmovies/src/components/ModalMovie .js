@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -6,24 +6,35 @@ import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-
-
-
 function ModalMovie(props) {
-    
-    const [message, setMessage] = useState('');
-    const handleChange = (event) => {
-        // 👇 Get input value from "event"
-        setMessage(event.target.value);
-       
-    };
-    
-    const addFavoriteHandel= async(e)=>{
-      // console.log("props1",props);
+
+    // const [message, setMessage] = useState('');
+
+
+
+
+
+
+
+    const addFavoriteHandel = async (e) => {
+        // console.log("props1",props);
+        e.preventDefault();
+        const obj = {
+            title: props.movieData.title,
+            overview: props.movieData.overview,
+            poster_path: props.movieData.poster_path,
+            release_date: props.movieData.release_date,
+            comment: e.target.comment.value
+        }
+
         const serverURl = `http://localhost:3005/getMovies`
-        const axiosRes = await axios.post(serverURl,props.movieData);
-       console.log("props2",props.movieData);
+        const axiosRes = await axios.post(serverURl, obj);
+        //setMessage(e.target.comment.defaultValue);
+        console.log("props2", axiosRes.config.data);
     }
+
+
+
     return (
         <>
             <Modal show={props.showFlag} onHide={props.handleclose}>
@@ -37,22 +48,29 @@ function ModalMovie(props) {
                     <Image src={props.movieData.poster_path} width='100%'></Image>
                     <p>{props.movieData.overview}</p>
 
+                    <Form onSubmit={addFavoriteHandel}>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>add comment</Form.Label>
+                            <Form.Control name="comment" type="text" defaultValue="ahmad" />
+                        </Form.Group>
+
+                        <Button variant="primary" type="submit">
+                            Add To Favorite
+                        </Button>
+                    </Form>
+
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <InputGroup>
-                        <InputGroup.Text>write your comment</InputGroup.Text>
-                        <Form.Control defaultValue={"ahamd"} onChange={handleChange} as="textarea" aria-label="With textarea" />
-                    </InputGroup>
+                    
 
 
 
                     <Button variant="secondary" onClick={props.handleclose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={addFavoriteHandel}>
-                        Save Changes
-                    </Button>
+                    
 
 
 

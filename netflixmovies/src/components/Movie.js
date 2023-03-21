@@ -6,17 +6,14 @@ import ModalMovie from './ModalMovie ';
 import { useState,useEffect } from 'react';
 
 function Movie(props){
-    useEffect(()=>{
-        console.log("props")
-        console.log(props)
-    }, [])
+    
     const [showFlag,setShowFlag] = useState(false);
     const [clickedItem,setClickedItem]=useState({});
     const[imagee,setImagee]=useState("");
     // setImagee(`https:/${props.poster_path}`)
 
     const handleShow = (item) =>{
-        console.log(item);
+        // console.log(item);
         setClickedItem(item);
         setShowFlag(true);
     }
@@ -24,6 +21,13 @@ function Movie(props){
         
         setShowFlag(false);
     }
+
+    useEffect(()=>{
+        console.log("props")
+        console.log(props)
+    }, [])
+
+
     return(
         <>
         <Row xs={1} md={3} className="g-4">

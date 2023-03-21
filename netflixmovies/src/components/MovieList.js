@@ -1,6 +1,8 @@
 import Movie from "./Movie";
 
 function MovieList(props){
+    
+
     return(
         <>
         {props.fetchData.map((item)=>{
